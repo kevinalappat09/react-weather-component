@@ -67,18 +67,23 @@ const WeatherCard = () => {
     }, [location])
 
     return (
-        <div className="weather-card">
-            <div className="selector-container">
-                <select name="locations" className="select" onChange={changeLocation}>
-                    <option value="Mumbai">Mumbai</option>
-                    <option value="Paris">Paris</option>
-                    <option value="London">London</option>
-                    <option value="California">California</option>
-                </select>
+        <div className={isDay===1 ? "weather-card day" : "weather-card night"}>
+            <div className="location-settings">
+                <div className="selector-container">
+                    <select name="locations" className={isDay===1 ? "location-select day" : "location-select night"} onChange={changeLocation}>
+                        <optgroup className="location-options">
+                            <option value="Mumbai">Mumbai</option>
+                            <option value="Paris">Paris</option>
+                            <option value="London">London</option>
+                            <option value="California">California</option>
+                        </optgroup>
+                    </select>
+                </div>
+                <div className="location">
+                    {name}, {region}, {country}
+                </div>
             </div>
-            <div className="location">
-                {name}, {region}, {country}
-            </div>
+            
             <div className="condition">
                 <div className="condition-icon"></div>
                 <div className="condition-text">{condition}</div>
